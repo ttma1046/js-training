@@ -268,4 +268,350 @@ function log2(x) {
 
 /*
 NaN
+Special number: Not a Number
+Result of undefined or erroneous operations
+Toxic: any arithmetic operation with NaN as an input will have NaN as a result
+NaN is not equal to angything, including NaN.
+NaN === NaN is false
+NaN !== NaN is true
 */
+
+/* Boolean
+true
+false
+*/
+
+/* String
+* A sequence of 0 or more 16-bit Unicode characters
+  - UCS-2, not quite UTF-16
+  - No awareness of surrogate pairs
+* No separate character type
+  - Characters are represented as strings with length of 1
+* Strings are immutable
+* Similar strings are equal (===)
+* String literals can use single or double quotes
+with \ escapement.
+*/
+
+/*
+Multiline string literals (Dont use them)
+*/
+
+var long_line_1 = "This is a \
+long line"; // ok
+
+/*
+var long_line_2 = "This is a \ 
+long line"; // syntax error
+*/
+
+/* Convert a number to a string
+ * Use number method (toString)
+ * Use string function
+ */
+
+ str = num.toString();
+ str = String(num);
+
+ /* Convert a string to a number
+  * Use the Number function.
+  * Use the + prefix operator.
+  * Use the parseInt function.
+  */
+
+  num = Numer(str);
+  num = +str;
+
+  /* parseInt function */
+     parseInt(str, 10)
+  
+  /* 
+  * Converts the value into a number.
+  * It stops at the first non-digit character.
+    - parseInt("12em") === 12
+  * The radix(10) should always be used.
+  */
+ parseInt("08") === 0
+ parseInt("08", 10) === 8
+
+ /* String length
+ * string.length
+ * The `length` property determins the number of 16-bit characters in a string.
+ * Extended characters are counted as 2.
+ */
+
+ /* String methods
+  * charAt
+  * charCodeAt
+  * compareLocale
+  * concat
+  * indexOf
+  * lastIndexOf
+  * localeCompare
+  * match
+  * replace
+  * search
+  * slice
+  * split
+  * substring
+  * toLocaleLowerCase
+  * toLocaleUpperCase
+  * toLowerCase
+  * toString
+  * toUpperCase
+  * trim
+  * valueOf
+  */
+
+  /* trim */
+  if (typeof String.prototype.trim !== 'function') {
+    String.prototype.trim = function() {
+      return this.replace(/^\s*(\S*(\s+\S+)*)\s*$/,
+      "$1");
+    };
+  }
+
+  /* supplant */
+  var template = '<table border="{border}">' +
+  '<tr><th>Last</th><td>{last}</td></tr>' +
+  '<tr><th>First</th><td>{first}</td></tr>' +
+  '</table>s';
+
+  var data = {
+    first: "Carl",
+    last: "Hollywood",
+    border: 2
+  };
+ mydiv.innerHTML = template.supplant(data);
+
+ if (typeof String.prototype.supplant !== 'function') {
+   String.prototype.supplant = function(o) {
+     return this.replace(/{{[^{}]*}})/g,
+      function (a, b) {
+        var r = o[b];
+        return typeof r === 'string' ? r : a;
+      });
+   };
+ }
+
+ /* Array */
+ /* Javascript doesnt have array */
+ /*
+  * Array inherits from Object.
+  * Indexes are converted to strings and used as names for retrieving values.
+  * Very efficient for sparse arrays.
+  * Not very efficient in most other cases.
+  * One advantage: No need to provide a length or type when creating an array.
+  */
+ /* length */
+ /* Arrays, unlike objects, have a special `length` property.
+  * It is always 1 larger than the highest integer subscript.
+  * It allows use of the tranditional for statement.
+  */
+ for (i = 0; i < a.length; i += 1) {
+   // ...
+ }
+/*
+ * Do not use `for in` with arrays
+ */
+
+/* Array Literals
+* An array literal uses []
+* It can contain any number of expressions,
+separated by commas
+*/
+myList = ['oats', 'peas', 'beans'];
+/*
+* New items can be appended
+*/
+myList[myList.length] = 'barley';
+/*
+* The dot notation should not be used with arrays.
+*/
+
+/* Array methods */
+/*
+* concat
+* reduce
+* every
+* reduceRight
+* filter
+* reverse
+* forEach
+* shift
+* indexOf
+* slice
+* join
+* some
+* lastIndexOf
+* splice
+* map
+* toLocaleString
+* pop
+* toString
+* push
+* unshift
+* sort
+*/
+  
+/* sort */
+var n = [4, 8, 15, 16, 23, 42];
+n.sort();
+// n is [15, 16, 23, 4, 42, 8];
+
+
+n.sort((a, b) => a - b);
+console.log(n);
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
+/* Deleting Elements
+ * delete array[number]
+ * Removes the element, but leaves a hole in the numbering.
+ */
+Array.splice(number, 1);
+/* Removes the element and renumbers all the following elements. */
+
+/* Deleting Elements */
+myArray = ['a', 'b', 'c', 'd'];
+delete myArray[1];
+
+// ['a', undefined, 'c', 'd']
+myArray.splice(1, 1);
+
+// ['a', 'c', 'd']
+
+/* Arrays vs Objects
+ * Use objects when the names are arbitrary strings.
+ * Use arrays when the names are sequential integers.
+ * Don't get confused by the term Associative Array.
+ */
+
+ /* Date
+  * The `Date` function is based on Java's Data class.
+  * It was not Y2K ready.
+  */
+
+/* RegExp */   
+
+/* Function */
+
+/* All values are objects */
+
+/* Except `null` and `undefined` */
+
+/* All values are objects
+ * Except `null` and `undefined`.
+ */
+
+/* null
+ * A value that isn't anything.
+ */
+
+/* undefined
+ * A value that isn't even that.
+ * The default value for variables and parameters.
+ * The value of missing members in objects.
+ */
+
+ /* typeof
+ The typeof prefix operator returns a string identifying the type of a value.
+ |type|tyoeof|
+ |----|------|
+ |object|'object'|
+ |function|'function'|
+ |array|'object'|
+ |number|'number'|
+ |string|'string'|
+ |boolean|'boolean'|
+ |null|'object'|
+ |undefined|'undefined'|
+*/
+/* Array.isArray */
+alert(Array.isArray([]));
+if (typeof Array.isArray !== 'function') {
+  Array.isArray = function (value) {
+    return Array.prototype.toString.apply(value) === '[Object Array]';
+  };
+}
+
+/* Falsy values */
+/*
+ * false
+ * null
+ * undefined
+ * "" (empty string)
+ * 0
+ * NaN
+ * All other values (including all objects) are truthy.
+ * "0" "false"
+ */
+
+/* Loosely Typed
+ * Any of these types can be stored in an variable, or passed as a parameter to any function.
+ * The language is not "untyped".
+ */
+
+/* Reference
+ * Objects can be passed as arguments to functions, and can be passed as arguments to functions, and can be returned by functions.
+ * - Objects are passed by reference.
+ * - Objects are not passed by value.
+ * The `===` operator compares object references, not values.
+ * - `true` only if both operands are the same object.
+ */
+
+/* C
+ * Javascript is syntactically a C family language
+ * It differs from C mainly in its type system, which allows functions to be values.
+ */
+
+/* Identifiers
+ * Starts with a letter or _ or $
+ * Followed by zero or more letters, digits, _ or $
+ * By convention, all variables, parameters, members, and function names start with lower case.
+ * Except for constructor functions which start with upper case.
+ * Initial _ should be reserved for implementations.
+ * $ should be reserved for machines.
+ */
+
+ /* Comments
+ // slashslash line comment
+ /* 
+    slashstar
+    block
+    comment
+*/
+
+/* Operators
+  Arithmetic
+  + - * / %
+  Comparision
+  == != < > <= >=
+  Logical
+  && || !
+  Bitwise
+  & | ^ >> >>> <<
+  Ternary
+  ?:
+*/
+
+  /* +
+  * Addition and concatenation
+  * If both operands are numbers,
+  * then 
+  *   add them.
+  * else
+  *   convert them both to strings.
+  * concatenate them
+  * '$' + 3 + 4 = '$34'
+  */
+
+  /* +
+   * Unary operator can convert strings to numbers
+   * +"42" = 42;
+   * Also
+   *   Number("42") = 42;
+   * Also
+   *   parseInt("42", 10) = 42
+   *   +"3" + (+"4") = 7
+   */
