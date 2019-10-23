@@ -1,0 +1,9 @@
+{
+  "name": "douglas-crockford",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^6.5.1"
+  }
+}
